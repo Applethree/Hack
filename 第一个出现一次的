@@ -1,0 +1,32 @@
+#include <stdio.h>
+#include <string.h>
+#define N 256
+
+int charHash[N] = {0};
+void initCharHash(const char *s)
+{
+      while(*s)
+      {
+            charHash[*s]++;
+            s++;
+      }
+}
+char findFirstOnceChar(const char *s)
+{
+      while(*s)
+      {
+            if(charHash[*s] == 1)
+            {
+                  return *s;
+            }
+            s++;
+      }
+      return 0;
+}
+int main(void)
+{
+      char *str = "abbca";
+      initCharHash(str);
+      printf("%c\n",findFirstOnceChar(str));
+      return 0;
+}
