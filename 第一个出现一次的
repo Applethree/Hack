@@ -58,3 +58,41 @@ char FirstNotRepeatingChar(char* pString)
       }
       return '\0';
 }
+
+
+
+=========================3===============================
+#include 
+#include 
+#define _SIZE_ 255
+using namespace std;
+
+struct Node
+{
+    int index;//存储下标。
+    int num;//存储个数。
+    Node() :index(-1), num(0){}
+};
+char Grial(char *str)
+{
+    Node node[_SIZE_];//如果只考虑26个字符就不需要这么多空间。
+    int slen = strlen(str);
+    int i = 0;
+    int mix = 0x7fffffff;
+    for (; i < slen; i++)
+    {
+        node[str[i]].index = i;//下标保存。
+        node[str[i]].num++;//保存个数。
+    }
+    for (i = 0; i < _SIZE_; i++)
+    {
+        if (node[i].num == 1)
+        {
+            mix = mix>node[i].index ? node[i].index : mix;
+            //求出第一次只出现一次的下标。
+        }
+    }
+    return str[mix];
+    //总共的时间复杂度是n(遍历的一遍)+m(总共出现一次的总个数)。
+    //空间复杂度，开辟了一组额外的节点空间来存储数据。
+}
