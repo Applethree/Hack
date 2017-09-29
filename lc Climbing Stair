@@ -25,3 +25,31 @@ public:
         return a;
     }
 };
+
+
+
+===================n jie========================
+int climbStairs4(int n)  
+{  
+    if (n <= 0)  
+        return 0;  
+    const static int maxStep = 2;  
+    int sum = 0;  
+    deque<int>ways(maxStep, 0);  
+          
+    for (int i = 1; i <= n; i++)  
+    {  
+        sum = 0;  
+        for (int j = 1; j <= maxStep && j<= i; j++)  
+        {  
+            if (i>j)  
+                sum += ways[maxStep - j];  
+            if (i == j)  
+                sum++;  
+        }  
+        ways.pop_front();  
+        ways.push_back(sum);  
+              
+    }  
+    return ways.back();  
+} 
